@@ -20,7 +20,7 @@ public class TrieNode
     }
 
     // only accepts lowercase a-z, spaces, -, and ' and .
-    public void addChar(char c, boolean isEndOfWord) {
+    public void addCharAsChildNode(char c, boolean isEndOfWord) {
         int cint = (int) c.toLowerCase();
         if (cint >= 65 && cint <= 90)
             children[cint - 65] = new TrieNode(isEndOfWord);
@@ -36,9 +36,9 @@ public class TrieNode
             System.out.println("cant add character: " + Character.toString(c));
     }
 
-    public TrieNode getChildChar(char c) { // if returns null, then Node doesnt have the child
+    public TrieNode getChildNode(char c) { // if returns null, then Node doesnt have the child
         int cint = (int) c.toLowerCase();
-        if (cint >= 65 && cint <= 90) {
+        if (cint >= 65 && cint <= 90)
             return children[cint - 65];
         else if (cint == 32)
             return children[26];

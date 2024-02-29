@@ -20,13 +20,13 @@ public class Trie {
         TrieNode selectedNode = root;
         for (int a = 0; a < key.length; a++) {
             char c = key.charAt(a);
-            TrieNode next = selectedNode.getChildChar(c);
+            TrieNode next = selectedNode.getChildNode(c);
             if (next != null) { // if already contains character
                 selectedNode = next;
                 continue;
             } else { // create new character node and move to it
-                selectedNode.addChar(c);
-                selectedNode = selectedNode.getChildChar(c);
+                selectedNode.addCharAsChildNode(c);
+                selectedNode = selectedNode.getChildNode(c);
             }
         }
         selectedNode.isEndOfWord = true;
@@ -37,7 +37,7 @@ public class Trie {
         TrieNode selectedNode = root;
         for (int a = 0; a < n.length; a++) {
             char c = key.charAt(a);
-            TrieNode next = selectedNode.getChildChar(c);
+            TrieNode next = selectedNode.getChildNode(c);
             if (next == null) return false;
         }
         // when reach final node, it should be an end of word if the trie contains our input
