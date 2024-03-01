@@ -61,10 +61,10 @@ public class Trie {
         String result = "";
         while (!selectedNode.isEndOfWord) {
             // find the first index of the selectedNode's children that exists (not null)
+            // basiclaly find the first child
             int firstValidIndex = 0;
-            while (selectedNode.getChildByIndex(firstValidIndex) == null) { // while each child is null
+            while (selectedNode.getChildByIndex(firstValidIndex) == null) // while each child is null
                 firstValidIndex++;
-            }
             selectedNode = selectedNode.getChildByIndex(firstValidIndex);
             result += TrieNode.charOfIndex(firstValidIndex);
         }
