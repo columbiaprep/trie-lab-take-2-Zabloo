@@ -50,7 +50,25 @@ public class Trie {
     }
 
     
+    // returns null if no prediction available
     public char[] predict(String n) {
-        return null;
+        TrieNode selectedNode = root;
+        for (int a = 0; a < n.length(); a++) { // go to the node where incomplete string ends
+            selectedNode = selectedNode.getChildNode(n.charAt(a));
+            if (selectedNode == null)
+                return null;
+        }
+        String result = "";
+        while (!selectedNode.isEndOfWord) {
+            // find the first index of the selectedNode's children that exists (not null)
+            int firstValidIndex = 0;
+            while (selectedNode.getChildByIndex(firstValidIndex) == null) { // while each child is null
+                firstValidIndex++;
+            }
+            selectedNode = selectedNode.getChildByIndex(firstValidIndex);
+            result += TrieNode.charOfIndex(firstValidIndex);
+        }
+
+        return result.toCharArray();
     }
 }

@@ -10,9 +10,7 @@ public class Main {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine())
                 t.insert(reader.nextLine());
-            System.out.println(t.search("Spencer brod"));
-            System.out.println(t.search("Bejarano Jack"));
-            System.out.println(t.search("John Doe"));
+            System.out.println(t.predict("Spen"));
         } catch (Exception e) {
             e.printStackTrace();
         }

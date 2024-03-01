@@ -66,4 +66,8 @@ public class TrieNode
     public TrieNode getChildNode(char c) { // if returns null, then Node doesnt have the child
         return children[indexOfChar(c)];
     }
+
+    public TrieNode getChildByIndex(int a) {
+        return children[a];
+    }
 };
