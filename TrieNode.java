@@ -21,13 +21,13 @@ public class TrieNode
 
     // only accepts lowercase a-z, spaces, -, and ' and .
     public void addCharAsChildNode(char c, boolean isEndOfWord) {
-        int cint = (int) c.toLowerCase();
-        if (cint >= 65 && cint <= 90)
-            children[cint - 65] = new TrieNode(isEndOfWord);
+        int cint = (int) Character.toLowerCase(c);
+        if (cint >= 97 && cint <= 122)
+            children[cint - 97] = new TrieNode(isEndOfWord);
         else if (cint == 32)
             children[26] = new TrieNode(isEndOfWord);
         else if (cint == 189) // dash
-            children[27] == new TrieNode(isEndOfWord);
+            children[27] = new TrieNode(isEndOfWord);
         else if (cint == 222) // apostrophe
             children[28] = new TrieNode(isEndOfWord);
         else if (cint == 190) // period
@@ -37,9 +37,9 @@ public class TrieNode
     }
 
     public TrieNode getChildNode(char c) { // if returns null, then Node doesnt have the child
-        int cint = (int) c.toLowerCase();
-        if (cint >= 65 && cint <= 90)
-            return children[cint - 65];
+        int cint = (int) Character.toLowerCase(c);
+        if (cint >= 97 && cint <= 122)
+            return children[cint - 97];
         else if (cint == 32)
             return children[26];
         else if (cint == 189)
@@ -48,7 +48,7 @@ public class TrieNode
             return children[28];
         else if (cint == 190)
             return children[29];
-        System.out.println("bad character input");
+        System.out.println("bad character input: " + c);
         return null;
     }
 };
