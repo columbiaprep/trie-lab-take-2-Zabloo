@@ -48,4 +48,9 @@ public class Trie {
         // when reach final node, it should be an end of word if the trie contains our input
         return selectedNode.isEndOfWord;
     }
+
+    
+    public char[] predict(String n) {
+        return null;
+    }
 }

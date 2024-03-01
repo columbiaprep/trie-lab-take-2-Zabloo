@@ -20,40 +20,50 @@ public class TrieNode
         this.isEndOfWord = isEndOfWord;
     }
 
-    // only accepts lowercase a-z, spaces, -, and ' and .
-    public void addCharAsChildNode(char c, boolean isEndOfWord) {
+
+    public static int indexOfChar(char c) {
         int cint = (int) Character.toLowerCase(c);
         if (cint >= 97 && cint <= 122)
-            children[cint - 97] = new TrieNode(isEndOfWord);
-        else if (c == ' ') // space
-            children[26] = new TrieNode(isEndOfWord);
-        else if (c == '-') // dash
-            children[27] = new TrieNode(isEndOfWord);
-        else if (c == '\'') // apostrophe
-            children[28] = new TrieNode(isEndOfWord);
-        else if (c == '.') // period
-            children[29] = new TrieNode(isEndOfWord);
-        else if (c == '\u2019')
-            children[30] = new TrieNode(isEndOfWord);
-        else
-            System.out.println("cant add character: " + Character.toString(c));
+            return cint - 97;
+        if (c == ' ')
+            return 26;
+        if (c == '-')
+            return 27;
+        if (c == '\'')
+            return 28;
+        if (c == '.')
+            return 29;
+        if (c == '\u2019')
+            return 30;
+        System.out.println("char cant be converted to index: " + Character.toString(c));
+        return -1;
+    }
+
+    public static char charOfIndex(int a) { // inverse of method above
+        if (a >= 0 && a <= 25)
+            return (char) (a + 97);
+        if (a == 26)
+            return ' ';
+        if (a == 27)
+            return '-';
+        if (a == 28)
+            return '\'';
+        if (a == 29)
+            return '.';
+        if (a == 30)
+            return '\u2019';
+        System.out.println("index " + a + " is not associated with a valid char");
+        return '\u0000';
+    }
+
+
+
+    // only accepts lowercase a-z, spaces, -, and ' and .
+    public void addCharAsChildNode(char c, boolean isEndOfWord) {
+        children[indexOfChar(c)] = new TrieNode(isEndOfWord);
     }
 
     public TrieNode getChildNode(char c) { // if returns null, then Node doesnt have the child
-        int cint = (int) Character.toLowerCase(c);
-        if (cint >= 97 && cint <= 122)
-            return children[cint - 97];
-        else if (c == ' ')
-            return children[26];
-        else if (c == '-')
-            return children[27];
-        else if (c == '\'')
-            return children[28];
-        else if (c == '.')
-            return children[29];
-        else if (c == '\u2019')
-            return children[30];
-        System.out.println("bad character input: " + c);
-        return null;
+        return children[indexOfChar(c)];
     }
 };
