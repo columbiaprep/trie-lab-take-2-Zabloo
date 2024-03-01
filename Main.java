@@ -8,10 +8,11 @@ public class Main {
         try {
             File file = new File("names.txt");
             Scanner reader = new Scanner(file);
-            String f = reader.nextLine();
-            System.out.println("First name: " + f);
-            t.insert(f);
+            while (reader.hasNextLine())
+                t.insert(reader.nextLine());
             System.out.println(t.search("Spencer brod"));
+            System.out.println(t.search("Bejarano Jack"));
+            System.out.println(t.search("John Doe"));
         } catch (Exception e) {
             e.printStackTrace();
         }
